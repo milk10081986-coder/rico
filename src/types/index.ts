@@ -48,3 +48,17 @@ export interface Vaccine {
 }
 
 export type ViewMode = 'calendar' | 'shopping' | 'files' | 'growth' | 'vaccination';
+
+export type CommitteeCategoryType = 'meeting' | 'event' | 'deadline' | 'other';
+
+export interface CommitteeEvent {
+  id: string;
+  title: string;
+  date: string; // YYYY-MM-DD
+  startTime?: string;
+  endTime?: string;
+  category: CommitteeCategoryType;
+  description?: string;
+}
+
+export type CommitteeViewMode = 'annual' | 'monthly';

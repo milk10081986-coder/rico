@@ -1,29 +1,23 @@
-import { Calendar, ShoppingCart, FolderOpen, TrendingUp, Syringe, Menu, X } from 'lucide-react';
-import type { ViewMode } from '../types';
+import { CalendarDays, CalendarRange, Menu, X, Users } from 'lucide-react';
+import type { CommitteeViewMode } from '../types';
 
 interface SidebarProps {
-  activeView: ViewMode;
-  onViewChange: (view: ViewMode) => void;
+  activeView: CommitteeViewMode;
+  onViewChange: (view: CommitteeViewMode) => void;
   isOpen: boolean;
   onToggle: () => void;
 }
 
-const menuItems: { view: ViewMode; label: string; icon: React.ReactNode }[] = [
-  { view: 'calendar', label: 'カレンダー', icon: <Calendar size={20} /> },
-  { view: 'shopping', label: '買い物リスト', icon: <ShoppingCart size={20} /> },
-  { view: 'files', label: 'ファイル', icon: <FolderOpen size={20} /> },
-  { view: 'growth', label: '成長グラフ', icon: <TrendingUp size={20} /> },
-  { view: 'vaccination', label: '予防接種', icon: <Syringe size={20} /> },
+const menuItems: { view: CommitteeViewMode; label: string; icon: React.ReactNode; desc: string }[] = [
+  { view: 'annual',  label: '年間スケジュール', icon: <CalendarRange size={20} />, desc: '1年間の予定を一覧' },
+  { view: 'monthly', label: '月間スケジュール', icon: <CalendarDays size={20} />,  desc: '月ごとの詳細カレンダー' },
 ];
 
 export default function Sidebar({ activeView, onViewChange, isOpen, onToggle }: SidebarProps) {
   return (
     <>
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-20 md:hidden"
-          onClick={onToggle}
-        />
+        <div className="fixed inset-0 bg-black/30 z-20 md:hidden" onClick={onToggle} />
       )}
 
       <button
@@ -44,46 +38,51 @@ export default function Sidebar({ activeView, onViewChange, isOpen, onToggle }: 
       >
         <div className="p-5 border-b border-gray-100">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-              <Calendar size={16} className="text-white" />
+            <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center">
+              <Users size={18} className="text-white" />
             </div>
             <div>
-              <p className="font-bold text-gray-800 text-sm leading-tight">ファミリー</p>
+              <p className="font-bold text-gray-800 text-sm leading-tight">委員会</p>
               <p className="font-bold text-gray-800 text-sm leading-tight">スケジュール</p>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 p-3">
-          {menuItems.map(({ view, label, icon }) => (
+        <nav className="flex-1 p-3 space-y-1">
+          {menuItems.map(({ view, label, icon, desc }) => (
             <button
               key={view}
               onClick={() => { onViewChange(view); if (isOpen) onToggle(); }}
               className={`
-                w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
-                transition-colors duration-150 mb-1
+                w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium
+                transition-colors duration-150 text-left
                 ${activeView === view
-                  ? 'bg-blue-50 text-blue-600'
+                  ? 'bg-indigo-50 text-indigo-700'
                   : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
                 }
               `}
             >
-              <span className={activeView === view ? 'text-blue-500' : 'text-gray-400'}>
+              <span className={`flex-shrink-0 ${activeView === view ? 'text-indigo-500' : 'text-gray-400'}`}>
                 {icon}
               </span>
-              {label}
+              <div>
+                <div className="leading-tight">{label}</div>
+                <div className={`text-[10px] font-normal mt-0.5 ${activeView === view ? 'text-indigo-400' : 'text-gray-400'}`}>
+                  {desc}
+                </div>
+              </div>
             </button>
           ))}
         </nav>
 
         <div className="p-4 border-t border-gray-100">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-sm font-bold">
-              家
+            <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 text-sm font-bold">
+              委
             </div>
             <div className="text-xs text-gray-500">
-              <p className="font-medium text-gray-700">田中家</p>
-              <p>4人家族</p>
+              <p className="font-medium text-gray-700">委員会管理</p>
+              <p>年間スケジュール</p>
             </div>
           </div>
         </div>
