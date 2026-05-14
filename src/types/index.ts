@@ -47,4 +47,23 @@ export interface Vaccine {
   totalDoses: number;
 }
 
-export type ViewMode = 'calendar' | 'shopping' | 'files' | 'growth' | 'vaccination';
+export type ViewMode = 'calendar' | 'shopping' | 'files' | 'growth' | 'vaccination' | 'meal';
+
+export type MealCategory = 'main-meat' | 'main-fish' | 'main-donburi' | 'main-noodle' | 'side' | 'soup' | 'kids';
+
+export interface Recipe {
+  id: string;
+  name: string;
+  category: MealCategory;
+  ingredients: string[];
+  isCustom?: boolean;
+}
+
+export interface DayMeal {
+  date: string; // YYYY-MM-DD
+  isNightShift: boolean;
+  mainId?: string;
+  sideId?: string;
+  soupId?: string;
+  kidsId?: string;
+}

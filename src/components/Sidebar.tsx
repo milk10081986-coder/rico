@@ -1,4 +1,4 @@
-import { Calendar, ShoppingCart, FolderOpen, TrendingUp, Syringe, Menu, X } from 'lucide-react';
+import { Calendar, ShoppingCart, FolderOpen, TrendingUp, Syringe, Menu, X, UtensilsCrossed } from 'lucide-react';
 import type { ViewMode } from '../types';
 
 interface SidebarProps {
@@ -10,6 +10,7 @@ interface SidebarProps {
 
 const menuItems: { view: ViewMode; label: string; icon: React.ReactNode }[] = [
   { view: 'calendar', label: 'カレンダー', icon: <Calendar size={20} /> },
+  { view: 'meal', label: '献立プランナー', icon: <UtensilsCrossed size={20} /> },
   { view: 'shopping', label: '買い物リスト', icon: <ShoppingCart size={20} /> },
   { view: 'files', label: 'ファイル', icon: <FolderOpen size={20} /> },
   { view: 'growth', label: '成長グラフ', icon: <TrendingUp size={20} /> },

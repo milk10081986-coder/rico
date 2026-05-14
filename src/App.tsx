@@ -5,6 +5,7 @@ import ShoppingList from './components/ShoppingList';
 import FileManager from './components/FileManager';
 import GrowthChart from './components/GrowthChart';
 import VaccinationList from './components/VaccinationList';
+import MealPlanner from './components/MealPlanner';
 import type { ViewMode, CalendarEvent, ShoppingItem, GrowthRecord, Vaccine } from './types';
 import { sampleEvents, sampleShoppingItems, sampleFiles, sampleGrowthRecords, sampleVaccines } from './data/sampleData';
 import './index.css';
@@ -19,6 +20,7 @@ export default function App() {
 
   const viewTitles: Record<ViewMode, string> = {
     calendar: 'カレンダー',
+    meal: '献立プランナー',
     shopping: '買い物リスト',
     files: 'ファイル',
     growth: '成長グラフ',
@@ -73,6 +75,7 @@ export default function App() {
               onDelete={deleteShoppingItem}
             />
           )}
+          {activeView === 'meal' && <MealPlanner />}
           {activeView === 'files' && (
             <FileManager files={sampleFiles} />
           )}
