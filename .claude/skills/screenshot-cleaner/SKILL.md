@@ -12,11 +12,12 @@ description: パソコン内のスクリーンショットを、撮影から24�
 
 | OS | フォルダ | ファイル名パターン |
 |---|---|---|
-| macOS | `defaults read com.apple.screencapture location` の場所（未設定ならデスクトップ） | `Screenshot*` / `スクリーンショット*` / `Screen Shot*` |
-| Windows | `%USERPROFILE%\Pictures\Screenshots`、OneDrive の `Pictures\Screenshots` | `*.png` / `*.jpg` |
-| Linux | `~/Pictures/Screenshots`、`~/Pictures`、`~/ピクチャ` | `Screenshot*` / `スクリーンショット*` |
+| macOS | `defaults read com.apple.screencapture location` の場所とデスクトップ | `Screenshot*` / `スクリーンショット*` / `Screen Shot*` |
+| Windows | `%USERPROFILE%\Pictures\Screenshots`、OneDrive の `Pictures\Screenshots` | `*.png` / `*.jpg`（全画像） |
+| Windows | デスクトップ（OneDrive のデスクトップ含む） | `Screenshot*` / `スクリーンショット*` |
+| Linux | `~/Pictures/Screenshots`、`~/Pictures`、`~/ピクチャ`、`~/Desktop`、`~/デスクトップ` | `Screenshot*` / `スクリーンショット*` |
 
-対象は画像（png / jpg / jpeg / heic）と macOS の画面収録（mov）のみ。サブフォルダは見ません。
+対象は画像（png / jpg / jpeg / heic）と macOS の画面収録（mov）のみ。サブフォルダは見ません。デスクトップではスクショ名のファイルだけが対象で、ほかのファイルは残します。
 
 ## 手順
 

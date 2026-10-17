@@ -24,9 +24,9 @@ dirs=()
 if [ "$(uname)" = "Darwin" ]; then
   loc="$(defaults read com.apple.screencapture location 2>/dev/null || true)"
   dirs+=("${loc:-$HOME/Desktop}")
-  [ "${loc:-}" != "$HOME/Desktop" ] && dirs+=("$HOME/Desktop")
+  [ -n "$loc" ] && [ "$loc" != "$HOME/Desktop" ] && dirs+=("$HOME/Desktop")
 else
-  dirs+=("$HOME/Pictures/Screenshots" "$HOME/Pictures" "$HOME/ピクチャ" "$HOME/ピクチャ/Screenshots")
+  dirs+=("$HOME/Pictures/Screenshots" "$HOME/Pictures" "$HOME/ピクチャ" "$HOME/ピクチャ/Screenshots" "$HOME/Desktop" "$HOME/デスクトップ")
 fi
 if [ -n "${SCREENSHOT_DIRS:-}" ]; then
   IFS=':' read -r -a extra <<< "$SCREENSHOT_DIRS"
